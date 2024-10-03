@@ -4,8 +4,8 @@ import schemas
 
 app = FastAPI()
 
-host_name = "52.204.168.191"
-port_number = "8008" #TETASSSSSSSS
+host_name = "52.204.168.191" # CAMBIAR!!!!!!
+port_number = "8008" 
 user_name = "root"
 password_db = "utec"
 database_name = "bd_api_python" 
@@ -57,6 +57,7 @@ def add_profesor(item:schemas.Item):
     mydb.close()
     return {"message": "Profesor added successfully"}
 
+# Eliminar un profesor
 @app.delete("/profesores/{id}")
 def delete_profesores(id: int):
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
@@ -71,3 +72,51 @@ def delete_profesores(id: int):
 
 # Curso API:
 
+# Get all cursos
+@app.get("/cursos")
+def get_cursos():
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM Curso")
+    result = cursor.fetchall()
+    cursor.close()
+    mydb.close()
+    return {"Curso": result}
+
+
+# Get un curso by ID
+@app.get("/cursos/{id}")
+def get_curso(id: int):
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    cursor = mydb.cursor()
+    cursor.execute(f"SELECT * FROM Curso WHERE idCurso = {id}")
+    result = cursor.fetchone()
+    cursor.close()
+    mydb.close()
+    return {"Curso": result}
+
+# Anadir un nuevo profesor
+@app.post("/cursos")
+def add_profesor(item:schemas.Item2):
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    nombre_curso = item.nomc
+    num_credits = item.numc
+    cursor = mydb.cursor()
+    sql = "INSERT INTO Curso (nombre_curso, num_creditos) VALUES (%s, %s)"
+    val = (nombre_curso,num_credits)
+    cursor.execute(sql, val)
+    mydb.commit()
+    cursor.close()
+    mydb.close()
+    return {"message": "Curso added successfully"}
+
+#Eliminar un curso
+@app.delete("/cursos/{id}")
+def delete_cursos(id: int):
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    cursor = mydb.cursor()
+    cursor.execute(f"DELETE FROM Curso WHERE idCurso = {id}")
+    mydb.commit()
+    cursor.close()
+    mydb.close()
+    return {"message": "Curso deleted successfully"}
