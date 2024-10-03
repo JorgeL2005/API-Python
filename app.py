@@ -16,11 +16,23 @@ def get_echo_test():
 
 # Get all profesores
 @app.get("/profesores")
-def get_employees():
+def get_profesores():
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM Profesor")
     result = cursor.fetchall()
+    cursor.close()
+    mydb.close()
+    return {"Profesor": result}
+
+
+# Get un profesor by ID
+@app.get("/profesores/{id}")
+def get_profesor(id: int):
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    cursor = mydb.cursor()
+    cursor.execute(f"SELECT * FROM Profesor WHERE id_profesor = {id}")
+    result = cursor.fetchone()
     cursor.close()
     mydb.close()
     return {"Profesor": result}
@@ -41,3 +53,15 @@ def add_profesor(item:schemas.Item):
     cursor.close()
     mydb.close()
     return {"message": "Profesor added successfully"}
+
+@app.delete("/profesores/{id}")
+def delete_profesores(id: int):
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
+    cursor = mydb.cursor()
+    cursor.execute(f"DELETE FROM Profesores WHERE id_profesor = {id}")
+    mydb.commit()
+    cursor.close()
+    mydb.close()
+    return {"message": "Profesor deleted successfully"}
+
+
