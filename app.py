@@ -14,6 +14,9 @@ database_name = "bd_api_python"
 def get_echo_test():
     return {"message": "Echo Test OK"}
 
+
+# Profesor API:
+
 # Get all profesores
 @app.get("/profesores")
 def get_profesores():
@@ -31,7 +34,7 @@ def get_profesores():
 def get_profesor(id: int):
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
     cursor = mydb.cursor()
-    cursor.execute(f"SELECT * FROM Profesor WHERE id_profesor = {id}")
+    cursor.execute(f"SELECT * FROM Profesor WHERE idProfesor = {id}")
     result = cursor.fetchone()
     cursor.close()
     mydb.close()
@@ -58,10 +61,13 @@ def add_profesor(item:schemas.Item):
 def delete_profesores(id: int):
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
     cursor = mydb.cursor()
-    cursor.execute(f"DELETE FROM Profesores WHERE id_profesor = {id}")
+    cursor.execute(f"DELETE FROM Profesor WHERE idProfesor = {id}")
     mydb.commit()
     cursor.close()
     mydb.close()
     return {"message": "Profesor deleted successfully"}
 
+
+
+# Curso API:
 

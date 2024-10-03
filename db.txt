@@ -3,19 +3,19 @@ CREATE DATABASE bd_api_python CHARSET utf8mb4;
 USE bd_api_python;
 
 CREATE TABLE Profesor (
-    id_profesor INT(11) NOT NULL AUTO_INCREMENT,
+    idProfesor INT(10) NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(25) NOT NULL,
     especialidad VARCHAR(25) NOT NULL,
-    dni INT(10) NOT NULL,
+    dni VARCHAR(10) NOT NULL,
     telefono VARCHAR(10) NOT NULL,
-    PRIMARY KEY (id_profesor)
+    PRIMARY KEY (idProfesor)
 );
 
 CREATE TABLE Curso (
-    id_curso INT(11) NOT NULL AUTO_INCREMENT,
+    idCurso INT(11) NOT NULL AUTO_INCREMENT,
     nombre_curso VARCHAR(25) NOT NULL,
-    num_creditos INT(2) NOT NULL,
-    PRIMARY KEY (id_curso)
+    num_creditos VARCHAR(5) NOT NULL,
+    PRIMARY KEY (idCurso)
 );
 
 
