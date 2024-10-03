@@ -1,5 +1,5 @@
 FROM python:3-slim
-WORKDIR /trabajo_parcial/Api-python
+WORKDIR /trabajo_parcial/API-Python
 RUN pip3 install "fastapi[standard]"
 RUN pip3 install pydantic
 RUN pip3 install mysql-connector-python
