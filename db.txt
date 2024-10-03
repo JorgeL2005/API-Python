@@ -1,0 +1,23 @@
+DROP DATABASE IF EXISTS bd_api_python;
+CREATE DATABASE bd_api_python CHARSET utf8mb4;
+USE bd_api_python;
+
+CREATE TABLE Profesor (
+    id_profesor INT(11) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(25) NOT NULL,
+    especialidad VARCHAR(25) NOT NULL,
+    dni INT(10) NOT NULL,
+    telefono VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id_profesor)
+);
+
+CREATE TABLE Curso (
+    id_curso INT(11) NOT NULL AUTO_INCREMENT,
+    nombre_curso VARCHAR(25) NOT NULL,
+    num_creditos INT(2) NOT NULL,
+    PRIMARY KEY (id_curso)
+);
+
+
+# Falta hacer la ingesta u.u
+commit;
