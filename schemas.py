@@ -8,3 +8,4 @@ class Item(BaseModel):
 class Item2(BaseModel):
     nomc: str
     numc: int
+    idpr: int
