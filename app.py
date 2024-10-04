@@ -95,7 +95,7 @@ def get_curso(id: int):
     mydb.close()
     return {"Curso": result}
 
-# Anadir un nuevo profesor
+# Anadir un nuevo curso
 @app.post("/cursos")
 def add_profesor(item:schemas.Item2):
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
