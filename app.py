@@ -121,3 +121,22 @@ def delete_cursos(id: int):
     cursor.close()
     mydb.close()
     return {"message": "Curso deleted successfully"}
+
+# Get un curso by ID, pero solo devuelve idCurso e idProfesor
+@app.get("/cursos/{id}/version2")
+def get_curso_simplificado(id: int):
+    # Conexión a la base de datos
+    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)
+    # Consulta para obtener solo idCurso e idProfesor
+    cursor = mydb.cursor()
+    cursor.execute(f"SELECT idCurso, idProfesor FROM Curso WHERE idCurso = {id}")
+    # Obtener el resultado de la consulta
+    result = cursor.fetchone()
+    cursor.close()
+    mydb.close()
+    # Si no se encuentra un curso con ese ID, retornar un mensaje de error
+    if result is None:
+        return {"message": f"Curso con id {id} no encontrado"}
+    
+    # Devolver el idCurso e idProfesor en formato JSON
+    return {"idCurso": result[0], "idProfesor": result[1]}
