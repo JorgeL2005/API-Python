@@ -27,8 +27,8 @@ INSERT INTO Profesor(nombre, especialidad, dni, telefono) VALUES('Rodrigo', 'Alg
 INSERT INTO Profesor(nombre, especialidad, dni, telefono) VALUES('Stewart', 'Metodos', '76452819', '909405356');
 
 
-INSERT INTO Curso (nombre_curso, num_creditos) VALUES('Cloud', 3, 1);
-INSERT INTO Curso (nombre_curso, num_creditos) VALUES('Algoritmos', 4, 2);
-INSERT INTO Curso (nombre_curso, num_creditos) VALUES('Metodos', 3, 3);
+INSERT INTO Curso (nombre_curso, num_creditos, idProfesor) VALUES('Cloud', 3, 1);
+INSERT INTO Curso (nombre_curso, num_creditos, idProfesor) VALUES('Algoritmos', 4, 2);
+INSERT INTO Curso (nombre_curso, num_creditos, idProfesor) VALUES('Metodos', 3, 3);
 
 commit;

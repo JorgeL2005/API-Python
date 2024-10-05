@@ -4,8 +4,8 @@ import schemas
 
 app = FastAPI()
 
-host_name = "3.232.249.9" # CAMBIAR!!!!!!
-port_number = "8008" 
+host_name = "localhost" # CAMBIAR!!!!!!
+port_number = "3306" 
 user_name = "root"
 password_db = "utec"
 database_name = "bd_api_python" 
@@ -99,9 +99,9 @@ def get_curso(id: int):
 @app.post("/cursos")
 def add_curso(item:schemas.Item2):
     mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)  
-    nombre_curso = item.nomc
-    num_credits = item.numc
-    id_profesor = item.idpr
+    nombre_curso = item.nombre_curso
+    num_credits = item.num_creditos
+    id_profesor = item.idProfesor
     cursor = mydb.cursor()
     sql = "INSERT INTO Curso (nombre_curso, num_creditos, idProfesor) VALUES (%s, %s, %s)"
     val = (nombre_curso,num_credits,id_profesor)
@@ -123,6 +123,7 @@ def delete_cursos(id: int):
     return {"message": "Curso deleted successfully"}
 
 # Get un curso by ID, pero solo devuelve idCurso e idProfesor
+# DTO :D
 @app.get("/cursos/{id}/version2")
 def get_curso_simplificado(id: int):
     # Conexión a la base de datos
