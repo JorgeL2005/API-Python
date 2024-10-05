@@ -103,7 +103,7 @@ def add_profesor(item:schemas.Item2):
     num_credits = item.numc
     id_profesor = item.idpr
     cursor = mydb.cursor()
-    sql = "INSERT INTO Curso (nombre_curso, num_creditos) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO Curso (nombre_curso, num_creditos, idProfesor) VALUES (%s, %s, %s)"
     val = (nombre_curso,num_credits,id_profesor)
     cursor.execute(sql, val)
     mydb.commit()
